@@ -1,10 +1,10 @@
-<img src="https://raw.githubusercontent.com/peippo/pixel-art-maker/master/images/banner.png" alt="banner image">
+<img src="http://www.lumous.com/pixel-art-maker/images/banner.png" alt="Banner image">
 
 # Udacity Project: Pixel Art Maker
 
 Final project for Udacity's Google Front-End Web Development Scholarship (first phase). The project specifications were to build a grid dynamically based on user input, and allow the user to modify colors of the grid cells. I decided to go with a limited two color palette to reduce the required UI components and make it easier for the user to start creating something.
 
-### <a href="https://peippo.github.io/pixel-art-maker/">Open the project</a>
+### <a href="http://www.lumous.com/pixel-art-maker">Open the project</a>
 
 ---
 
