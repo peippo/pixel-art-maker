@@ -1,0 +1,519 @@
+// bower:scss
+// endbower
+
+$header-color: #efefef;
+$yellow: #ffd710;
+$black: #111;
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.browserupgrade {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+
+body {
+	background: #dcdcdc;
+	font-family: 'Comfortaa', Helvetica, Arial, sans-serif;
+	color: #333;
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+}
+
+.heading-and-controls {
+	background-color: $header-color;
+	background: linear-gradient(to top, lighten($header-color, 30%), lighten($header-color, 20%) 10px, lighten($header-color, 10%) 30px, $header-color);
+	border-bottom: 1px solid white;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	position: relative;
+
+	&:before,
+	&:after {
+		font-family: FontAwesome;
+		position: absolute;
+		right: -50px;
+		top: -100px;
+		font-size: 256px;
+		transform: rotate(15deg);
+		opacity: .04;
+		pointer-events: none;
+	}
+
+	&:after {
+		content: "\f0ce";
+		right: -50px;
+		top: -64px;
+		font-size: 256px;
+		transform: rotate(15deg);
+	}
+
+	h1 {
+		text-align: center;
+		font-size: 32px;
+		font-weight: 700;
+		text-transform: uppercase;
+		background-color: $yellow;
+		color: $black;
+		user-select: none;
+
+		.highlight {
+			display: inline-block;
+			background-color: rgba($black, 0.75);
+			padding: 10px 10px 5px;
+			color: $yellow;
+		}
+	}
+
+	.control-label {
+		margin-bottom: 5px;
+		user-select: none;
+	}
+
+	.cols-number,
+	.rows-number {
+		background-color: rgba($black, 0.75);
+		color: $yellow;
+		font-weight: 700;
+		border-radius: 6px;
+		width: 28px;
+		height: 28px;
+		font-size: 14px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	form#grid-controls {
+		display: flex;
+		padding: 0 20px 20px;
+	}
+
+	.grid-control {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		padding: 20px 20px 10px;
+	}
+
+	.grid-control-buttons {
+		display: flex;
+		justify-content: center;
+		border-top: 1px solid rgba($black, 0.3);
+		background: linear-gradient(to bottom, rgba(darken($black, 5%), 0.15), rgba(darken($black, 5%), 0.001));
+		padding-top: 20px;
+	}
+
+	button.grid-control-button {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		font-family: 'Comfortaa', Helvetica, Arial, sans-serif;
+		background-color: rgba($black, 0.75);
+		color: $yellow;
+		border: 0;
+		padding: 10px 15px;
+		margin: 5px;
+		font-size: 13px;
+		border-radius: 6px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-transform: uppercase;
+		font-weight: 700;
+		transition: all, .3s;
+		user-select: none;
+
+		&.disabled {
+			background-color: rgba(#666, 0.8);
+			color: #a3a3a3;
+
+			&:hover {
+				background-color: rgba(#666, 0.8);
+				color: #a3a3a3;
+				cursor: not-allowed;
+			}
+		}
+
+		&:hover,
+		&:focus {
+			background-color: rgba(darken($black, 5%), 0.9);
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&:focus {
+			outline: 0;
+		}
+
+		.legend {
+			display: none;
+		}
+
+		.mobile-legend {
+			display: block;
+		}
+
+		i {
+			font-size: 18px;
+			margin-right: .2em;
+		}
+	}
+
+	// Scale down controls if screen is under 480px wide
+	@media (max-width: 480px) {
+		h1 {
+			font-size: 24px;
+		}
+
+		.grid-control {
+			padding: 15px 10px 15px;
+		}
+
+		form#grid-controls {
+			padding: 10px;
+		}
+	}
+
+	// Add another background image and show longer button texts when we go above 780px
+	@media (min-width: 780px) {
+		&:before {
+			content: "\f0ce";
+			left: 50px;
+			top: -300px;
+			font-size: 512px;
+			transform: rotate(-15deg);
+		}
+
+		button.grid-control-button {
+			padding: 10px 20px;
+			font-size: 14px;
+
+			.legend {
+				display: inline-block;
+			}
+
+			.mobile-legend {
+				display: none;
+			}
+
+			i {
+				font-size: 20px;
+				margin-right: .25em;
+			}
+		}
+	}
+}
+
+section.grid {
+	box-shadow: 0 5px 150px -20px rgba(black, 0.2);
+	position: relative;
+	overflow: hidden;
+}
+
+#grid-table {
+	width: 100%;
+	overflow: hidden;
+
+	td {
+		background-color: #eaeaea;
+		box-shadow: 0px 5px 30px -10px rgba(0, 0, 0, 0.2) inset;
+		padding-bottom: 50%;
+		border: 1px solid #d8d8d8;
+		transition: all, .15s;
+		overflow: hidden;
+
+		&:hover {
+			cursor: cell;
+			background-color: darken(#eaeaea, 2%);
+		}
+
+		// Glitter effects
+		&.glitter[data-color='1'] {
+			position: relative;
+			overflow: hidden;
+
+			&:after {
+				content: '';
+				height: 60px;
+				width: 400px;
+				transform: rotate(20deg);
+				position: absolute;
+				top: -100px;
+				left: -100px;
+				background: linear-gradient(to bottom, rgba(white, 0.01), rgba(white, 0.2), rgba(white, 0.01));
+				animation-duration: 6s;
+				animation-iteration-count: infinite;
+				animation-name: glitter;
+			}
+		}
+
+		// Remove glitter effect on Firefox due to buggy behaviour
+		@-moz-document url-prefix() {
+			&.glitter[data-color='1']:after {
+				content: none;
+			}
+		}
+
+		&.glitter-slow[data-color='1'] {
+			&:after {
+				height: 80px;
+				width: 400px;
+				transform: rotate(20deg);
+				background: linear-gradient(to bottom, rgba(white, 0.01), rgba(white, 0.2), rgba(white, 0.01));
+				animation-duration: 4s;
+				animation-name: glitter-slow;
+			}
+		}
+
+		&.glitter-fast[data-color='1'] {
+			&:after {
+				height: 70px;
+				width: 400px;
+				transform: rotate(20deg);
+				background: linear-gradient(to bottom, rgba(white, 0.01), rgba(white, 0.2), rgba(white, 0.01));
+				animation-duration: 6s;
+				animation-name: glitter-fast;
+			}
+		}
+
+		// First color
+		&[data-color='1'] {
+			background-color: $yellow;
+			background: linear-gradient(35deg, lighten($yellow, 35%) 2%, lighten($yellow, 25%) 10%, lighten($yellow, 10%) 50%, $yellow);
+			box-shadow: 0px 3px 10px -5px darken($yellow, 10%) inset;
+
+			&:hover {
+				background-color: darken($yellow, 1%);
+				background: linear-gradient(35deg, lighten($yellow, 33%) 2%, lighten($yellow, 23%) 10%, lighten($yellow, 8%) 50%, darken($yellow, 3%));
+			}
+		}
+
+		// Second color
+		&[data-color='2'] {
+			background-color: #423800;
+			background: linear-gradient(200deg, lighten(#423800, 15%) 5%, lighten(#423800, 10%) 20%, lighten(#423800, 5%) 50%, #423800);
+			box-shadow: 0px 3px 10px -5px darken(#423800, 10%) inset;
+
+			&:hover {
+				background-color: darken(#423800, 1%);
+				background: linear-gradient(200deg, lighten(#423800, 14%) 5%, lighten(#423800, 9%) 20%, lighten(#423800, 4%) 50%, darken(#423800, 1%));
+			}
+		}
+	}
+
+	@for $i from 1 to 20 {
+		&.columns-#{$i} {
+			td {
+				padding-bottom: calc(100% / #{$i});
+			}
+		}
+	}
+}
+
+
+@keyframes glitter {
+	0% {
+		top: -100px;
+		opacity: 0;
+	}
+
+	10% {
+		opacity: 1;
+	}
+
+	50% {
+		top: calc(100% + 100px);
+	}
+
+	90% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		top: calc(100% + 100px);
+	}
+}
+
+@keyframes glitter-slow {
+	0% {
+		top: -100px;
+		opacity: 0;
+	}
+
+	10% {
+		opacity: 1;
+	}
+
+	60% {
+		top: calc(100% + 100px);
+	}
+
+	90% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		top: calc(100% + 100px);
+	}
+}
+
+@keyframes glitter-fast {
+	0% {
+		top: -150px;
+		opacity: 0;
+	}
+
+	10% {
+		opacity: 1;
+	}
+
+	50% {
+		top: calc(100% + 150px);
+	}
+
+	90% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		top: calc(100% + 150px);
+	}
+}
+
+
+// Input range styling
+input[type=range] {
+	-webkit-appearance: none;
+	background-color: transparent;
+	width: 100%;
+	padding: 10px 5px;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+	height: 10px;
+	background: darken($header-color, 20%);
+	box-shadow: 0 3px 5px -1px rgba(black, 0.4) inset;
+	border: none;
+	border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	border: none;
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background: $yellow;
+	margin-top: -7px;
+	background-image: linear-gradient(to bottom, lighten($yellow, 40%) 3px, lighten($yellow, 20%) 10px, $yellow);
+	border: 2px solid lighten($black, 30%);
+	box-shadow: 0 3px 3px -2px rgba(black, 0.4);
+}
+
+input[type=range]:focus {
+	outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+	background: darken($header-color, 30%);
+}
+
+input[type=range]::-moz-range-track {
+	width: 100%;
+	height: 10px;
+	background: darken($header-color, 20%);
+	box-shadow: 0 3px 5px -1px rgba(black, 0.4) inset;
+	border: none;
+	border-radius: 3px;
+}
+
+input[type=range]::-moz-range-thumb {
+	border: none;
+	height: 24px;
+	width: 24px;
+	border-radius: 50%;
+	background: $yellow;
+	background-image: linear-gradient(to bottom, lighten($yellow, 40%) 3px, lighten($yellow, 20%) 10px, $yellow);
+	border: 2px solid lighten($black, 30%);
+	box-shadow: 0 3px 3px -2px rgba(black, 0.4);
+}
+
+input[type=range]:-moz-focusring {
+	outline: 1px solid white;
+	outline-offset: -1px;
+}
+
+input[type=range]::-moz-focus-outer {
+	border: 0;
+}
+
+input[type=range]::-ms-track {
+	width: 100%;
+	height: 5px;
+	background: transparent;
+	border-color: transparent;
+	border-width: 6px 0;
+	color: transparent;
+}

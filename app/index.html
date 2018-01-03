@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="Pixel art tool for Udacity Google Front-end Developer Scholarship's first phase">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>LAB: Pixel Art Maker</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="images/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="images/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="images/android-chrome-192x192.png" sizes="192x192">
+		<meta name="msapplication-square70x70logo" content="images/smalltile.png" />
+		<meta name="msapplication-square150x150logo" content="images/mediumtile.png" />
+		<meta name="msapplication-wide310x150logo" content="images/widetile.png" />
+		<meta name="msapplication-square310x310logo" content="images/largetile.png" />
+
+
+		<!-- Place favicon.ico in the root directory -->
+
+		<!-- build:css styles/vendor.css -->
+		<!-- bower:css -->
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<!-- build:css styles/main.css -->
+		<link rel="stylesheet" href="styles/main.css">
+		<!-- endbuild -->
+
+	</head>
+	<body>
+		<!--[if IE]>
+			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+
+
+		<section class="heading-and-controls">
+			<h1><span class="highlight">Lab:</span> Pixel Art Maker</h1>
+
+			<div class="grid-control-buttons">
+				<button class="grid-control-button" id="load-drawing"><i class="fa fa-cloud-download"></i><span class="mobile-legend">Random</span><span class="legend"> Load random</span></button>
+				<button class="grid-control-button disabled" disabled id="save-drawing"><i class="fa fa-cloud-upload"></i><span class="mobile-legend">Save</span><span class="legend"> Save to cloud</span></button>
+				<button class="grid-control-button disabled" disabled id="clear-grid"><i class="fa fa-trash"></i><span class="mobile-legend">Clear</span><span class="legend"> Clear grid</span></button>
+			</div>
+
+			<form id="grid-controls">
+				<div class="grid-control">
+					<span class="control-label"><i class="fa fa-ellipsis-v"></i> Grid height <span class="rows-number"></span></span>
+					<input type="range" min="2" max="10" step="1" id="input-rows">
+				</div>
+				<div class="grid-control">
+					<span class="control-label"><i class="fa fa-ellipsis-h"></i> Grid width <span class="cols-number"></span></span>
+					<input type="range" min="5" max="19" step="1" id="input-cols">
+				</div>
+			</form>
+		</section>
+
+		<section class="grid">
+			<table id="grid-table"></table>
+		</section>
+
+		<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+		<script>
+			// Initialize Firebase
+			var config = {
+				apiKey: 'AIzaSyCIiIdrNryVS8BAyTq59yEfIk2y4IJrxF8',
+				authDomain: 'pixel-art-maker-b5853.firebaseapp.com',
+				databaseURL: 'https://pixel-art-maker-b5853.firebaseio.com',
+				projectId: 'pixel-art-maker-b5853',
+				storageBucket: '',
+				messagingSenderId: '297200645464'
+			};
+			firebase.initializeApp(config);
+			var database = firebase.database();
+		</script>
+
+
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<!-- 		<script>
+			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+			e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+			e.src='https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+			ga('create','UA-XXXXX-X');ga('send','pageview');
+		</script> -->
+
+		<!-- build:js scripts/vendor.js -->
+		<!-- bower:js -->
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<!-- endbower -->
+		<!-- endbuild -->
+
+		<!-- build:js scripts/main.js -->
+		<script src="scripts/main.js"></script>
+		<!-- endbuild -->
+	</body>
+</html>
